@@ -5,7 +5,7 @@
  */
 #define FW_VER zmk_firmware_version_251115
  
-#if 1
+#if 0
 #define ZMK_BEHAVIORS_OMIT_CAPS_WORD        // &caps_word
 #define ZMK_BEHAVIORS_OMIT_KT               // &kt, Key Toggle
 #define ZMK_BEHAVIORS_OMIT_KEY_REPEAT       // &key_repeat, Key Repeat
@@ -39,8 +39,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <260>;
-            quick-tap-ms = <240>;
+            tapping-term-ms = <150>;   // ponytail: was 260; user wants snappier mods. tune up if accidental holds
+            quick-tap-ms = <140>;      // ponytail: was 240
             bindings = <&kp>, <&kp>;
             display-name = "Mod-Tap(HP)";
         };
@@ -61,8 +61,8 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <180>;
+            tapping-term-ms = <150>;   // ponytail: was 200; aggressive for letter layer-taps (D/F/C/Z) — watch for accidental layer triggers
+            quick-tap-ms = <140>;      // ponytail: was 180
             bindings = <&mo>, <&kp>;
             display-name = "Layer-Tap(TP)";
         };
