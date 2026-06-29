@@ -107,8 +107,22 @@
         combo_question {
             timeout-ms = <45>;
             require-prior-idle-ms = <120>;
-            key-positions = <26 27>;   // Z + X -> ?
+            key-positions = <15 16>;   // S + D -> ?
             bindings = <&kp QUESTION>;
+        };
+        // Tab-cycling combos: NO require-prior-idle, so they can be spammed.
+        // (The idle guard would block rapid re-fires -> you'd type literal letters instead.)
+        // ponytail: X+C overlaps the "exc" digraph (except/excited) — the tight 45ms
+        // timeout is the only guard left; drop to ~30 if it misfires while typing.
+        combo_prev_tab {
+            timeout-ms = <45>;
+            key-positions = <26 27>;   // Z + X -> Ctrl+Shift+Tab (previous tab)
+            bindings = <&kp LC(LS(TAB))>;
+        };
+        combo_next_tab {
+            timeout-ms = <45>;
+            key-positions = <27 28>;   // X + C -> Ctrl+Tab (next tab)
+            bindings = <&kp LC(TAB)>;
         };
     };
 };
