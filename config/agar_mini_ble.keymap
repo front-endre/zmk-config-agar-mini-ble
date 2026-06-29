@@ -104,5 +104,11 @@
             key-positions = <2 3>;   // W + E -> Backspace
             bindings = <&kp BSPC>;
         };
+        combo_question {
+            timeout-ms = <45>;
+            require-prior-idle-ms = <120>;
+            key-positions = <26 27>;   // Z + X -> ?
+            bindings = <&kp QUESTION>;
+        };
     };
 };
