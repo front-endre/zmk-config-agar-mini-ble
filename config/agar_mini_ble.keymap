@@ -88,41 +88,44 @@
         };
     };
 
+    // ponytail: macros for multi-character combo output.
+    macros {
+        macro_bullet: macro_bullet {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp SPACE>;          // "- "
+        };
+        macro_todo: macro_todo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT &kp RBKT &kp SPACE>;  // "[] "
+        };
+    };
+
     // ponytail: user-added combos. Merges with the combos node in common.keymap.
-    // require-prior-idle + short timeout so they don't misfire mid-typing.
+    // All carry require-prior-idle-ms 120 + tight timeout to avoid mid-typing misfires.
     combos {
         compatible = "zmk,combos";
-        combo_del {
-            timeout-ms = <45>;
-            require-prior-idle-ms = <120>;
-            key-positions = <1 2>;   // Q + W -> Delete
-            bindings = <&kp DELETE>;
-        };
-        combo_bspc {
-            timeout-ms = <45>;
-            require-prior-idle-ms = <120>;
-            key-positions = <2 3>;   // W + E -> Backspace
-            bindings = <&kp BSPC>;
-        };
-        combo_question {
-            timeout-ms = <45>;
-            require-prior-idle-ms = <120>;
-            key-positions = <15 16>;   // S + D -> ?
-            bindings = <&kp QUESTION>;
-        };
-        // Tab-cycling combos: NO require-prior-idle, so they can be spammed.
-        // (The idle guard would block rapid re-fires -> you'd type literal letters instead.)
-        // ponytail: X+C overlaps the "exc" digraph (except/excited) — the tight 45ms
-        // timeout is the only guard left; drop to ~30 if it misfires while typing.
-        combo_prev_tab {
-            timeout-ms = <45>;
-            key-positions = <26 27>;   // Z + X -> Ctrl+Shift+Tab (previous tab)
-            bindings = <&kp LC(LS(TAB))>;
-        };
-        combo_next_tab {
-            timeout-ms = <45>;
-            key-positions = <27 28>;   // X + C -> Ctrl+Tab (next tab)
-            bindings = <&kp LC(TAB)>;
-        };
+
+        // editing
+        combo_del      { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <1 2>;   bindings = <&kp DELETE>; };    // Q+W -> Delete
+        combo_bspc     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <2 3>;   bindings = <&kp BSPC>; };      // W+E -> Backspace
+        combo_question { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <15 16>; bindings = <&kp QUESTION>; };  // S+D -> ?
+
+        // notes formatting
+        combo_bullet   { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <26 27>; bindings = <&macro_bullet>; }; // Z+X -> "- "
+        combo_todo     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <27 28>; bindings = <&macro_todo>; };   // X+C -> "[] "
+
+        // navigation / symbols
+        combo_esc      { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <0 1>;   bindings = <&kp ESC>; };       // TAB+Q -> Esc
+        combo_home     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <2 15>;  bindings = <&kp HOME>; };      // W+S -> Home
+        combo_end      { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <15 27>; bindings = <&kp END>; };       // S+X -> End
+        combo_copy     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <28 29>; bindings = <&kp LC(C)>; };     // C+V -> Ctrl+C
+        combo_lpar     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <1 3>;   bindings = <&kp LPAR>; };      // Q+E -> (
+        combo_rpar     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <2 4>;   bindings = <&kp RPAR>; };      // W+R -> )
+        combo_equal    { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <1 4>;   bindings = <&kp EQUAL>; };     // Q+R -> =
+
+        // 3-key (longer timeout to land all three)
+        combo_shift_enter { timeout-ms = <55>; require-prior-idle-ms = <120>; key-positions = <14 15 16>; bindings = <&kp LS(RET)>; }; // A+S+D -> Shift+Enter
     };
 };
