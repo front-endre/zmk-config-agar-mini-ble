@@ -95,13 +95,13 @@
         combo_del {
             timeout-ms = <45>;
             require-prior-idle-ms = <120>;
-            key-positions = <1 2>;   // Q + W -> Delete
+            key-positions = <14 15>;   // A + S -> Delete
             bindings = <&kp DELETE>;
         };
         combo_bspc {
             timeout-ms = <45>;
             require-prior-idle-ms = <120>;
-            key-positions = <2 3>;   // W + E -> Backspace
+            key-positions = <15 16>;   // S + D -> Backspace
             bindings = <&kp BSPC>;
         };
         combo_question {
