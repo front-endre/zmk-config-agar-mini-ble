@@ -125,7 +125,6 @@
         combo_rpar     { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <2 4>;   bindings = <&kp RPAR>; };      // W+R -> )
         combo_equal    { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <1 4>;   bindings = <&kp EQUAL>; };     // Q+R -> =
 
-        // 3-key (longer timeout to land all three)
-        combo_shift_enter { timeout-ms = <55>; require-prior-idle-ms = <120>; key-positions = <14 15 16>; bindings = <&kp LS(RET)>; }; // A+S+D -> Shift+Enter
+        combo_shift_enter { timeout-ms = <45>; require-prior-idle-ms = <120>; key-positions = <13 14>; bindings = <&kp LS(RET)>; }; // Enter/CAPS key + A -> Shift+Enter
     };
 };
